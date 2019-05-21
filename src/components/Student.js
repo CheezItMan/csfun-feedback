@@ -20,7 +20,7 @@ const Student = ({ name, cohort, id, classroom, githubName, email, handleEdit, h
         {email}
       </td>
       <td>
-        <button className="btn btn-primary" onClick={() => handleEdit(id)}>
+        <button id={`edit${id}`} className="btn btn-primary" onClick={() => handleEdit(id)}>
           Edit
         </button>
         <button className="btn btn-danger" onClick={() => handleDelete(id)}>

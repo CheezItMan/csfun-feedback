@@ -6,14 +6,16 @@ import Student from './Student';
 
 
 describe('Student', () => {
+  const studentData = {
+    name: 'Bob Hope',
+    cohort: 33,
+    classroom: 'Jangles',
+    email: 'bob@hope.com',
+    githubName: 'bobHope'
+  }
+
   it('Will have the student name, className, cohort, etc', () => {
-    const studentData = {
-      name: 'Bob Hope',
-      cohort: 33,
-      classroom: 'Jangles',
-      email: 'bob@hope.com',
-      githubName: 'bobHope'
-    }
+
     const { queryByText } = render(<table><tbody><Student {...studentData} /></tbody></table>);
 
     Object.keys(studentData).forEach((key) => {
@@ -21,5 +23,10 @@ describe('Student', () => {
       const node = queryByText(studentData[key].toString());
       expect(node.innerHTML).toBe(studentData[key].toString());
     })
+  });
+
+  it('Will trigger the delete callback when the button is clicked', () => {
+    const { queryBy } = render(<table><tbody><Student {...studentData} /></tbody></table>);
+
   });
 });
