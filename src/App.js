@@ -1,7 +1,11 @@
-import React from 'react';
-import StudentList from './components/StudentList'
-import logo from './logo.svg';
 import './App.css';
+
+import React from 'react';
+import { Suspense } from 'react';
+import firebaseWrapper from './context/auth'
+const AuthenticatedClassroomApp = React.lazy(() => import('./components/App/AuthenticatedClassroomApp'));
+const UnAuthenticatedClassroomApp = React.lazy(() => import('./components/App/UnAuthenticatedClassroomApp'));
+
 
 const studentList = [
   {
@@ -38,7 +42,9 @@ class App extends React.Component {
 
     this.state = {
       students: studentList,
-    }
+    };
+
+
   }
 
   editStudent = (id) => {
@@ -52,21 +58,25 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
+    const { user, signOut, signInWithGoogle } = this.props;
 
-        </header>
-        <main className="App-body">
-          <StudentList students={this.state.students}
-            onDelete={this.deleteStudent}
-            onEdit={this.editStudent}
-          />
-        </main>
-      </div>
-    );
+    if (user) {
+      return (
+        <Suspense fallback={<div>Loading</div>} >
+          <AuthenticatedClassroomApp user={user} signOut={signOut} fallback={<div>Loading</div>} />
+        </Suspense>
+      );
+    }
+    return (
+      <main>
+        <h1>Please Log in</h1>
+        <Suspense fallback={<div>Loading</div>} >
+          <UnAuthenticatedClassroomApp signIn={signInWithGoogle} fallback={<div>Loading</div>} />
+        </Suspense>
+      </main>
+    )
   }
 
 }
 
-export default App;
+export default firebaseWrapper(App);
