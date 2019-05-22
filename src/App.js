@@ -1,8 +1,8 @@
 import './App.css';
 
-import React from 'react';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import firebaseWrapper from './context/auth'
+// Only load the components being used
 const AuthenticatedClassroomApp = React.lazy(() => import('./components/App/AuthenticatedClassroomApp'));
 const UnAuthenticatedClassroomApp = React.lazy(() => import('./components/App/UnAuthenticatedClassroomApp'));
 
@@ -43,8 +43,6 @@ class App extends React.Component {
     this.state = {
       students: studentList,
     };
-
-
   }
 
   editStudent = (id) => {
