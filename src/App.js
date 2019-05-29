@@ -39,6 +39,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(process.env);
 
     this.state = {
       students: studentList,
@@ -56,7 +57,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { user, signOut, signInWithGoogle } = this.props;
+    const { user, signOut, signInWithGoogle, signInWithGithub } = this.props;
 
     if (user) {
       return (
@@ -69,7 +70,7 @@ class App extends React.Component {
       <main>
         <h1>Please Log in</h1>
         <Suspense fallback={<div>Loading</div>} >
-          <UnAuthenticatedClassroomApp signIn={signInWithGoogle} fallback={<div>Loading</div>} />
+          <UnAuthenticatedClassroomApp signInWithGoogle={signInWithGoogle} signInWithGithub={signInWithGithub} fallback={<div>Loading</div>} />
         </Suspense>
       </main>
     )
