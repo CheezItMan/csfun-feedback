@@ -2,55 +2,58 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Student from './Student';
 
-const renderStudents = (props) => {
-  return props.students.map((student) => {
-    return <Student key={student.id} {...student} handleDelete={props.onDelete} handleEdit={props.onEdit} />
-  });
-}
+class StudentList extends React.Component {
+  constructor(props) {
+    super(props);
 
-const StudentList = (props) => {
-  return (
-    <table className="Student-list">
-      <thead>
-        <tr>
-          <th>
-            Name
+    this.state = {
+      students: [],
+    }
+  }
+
+  renderStudents = () => {
+    const { students } = this.state;
+    return students.map((student) => {
+      return <Student key={student.id} {...student} handleDelete={this.props.onDelete} handleEdit={this.props.onEdit} />
+    });
+  }
+
+  render(props) {
+    return (
+      <table className="Student-list">
+        <thead>
+          <tr>
+            <th>
+              Name
         </th>
-          <th>
-            Cohort
+            <th>
+              Cohort
         </th>
-          <th>
-            Class
+            <th>
+              Class
         </th>
-          <th>
-            Github Name
+            <th>
+              Github Name
         </th>
-          <th>
-            Email
+            <th>
+              Email
         </th>
-          <th>
-            &nbsp;
+            <th>
+              &nbsp;
         </th>
-        </tr>
-      </thead>
-      <tbody>
-        {renderStudents(props)}
-      </tbody>
-    </table>
-  )
+          </tr>
+        </thead>
+        <tbody>
+          {this.renderStudents()}
+        </tbody>
+      </table>
+    );
+  }
 };
 
 StudentList.propTypes = {
-  students: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    cohort: PropTypes.number,
-    class: PropTypes.string,
-    githubName: PropTypes.string,
-    email: PropTypes.string,
-    onDelete: PropTypes.func,
-    onEdit: PropTypes.funct,
-  })),
-}
+  onDelete: PropTypes.func,
+  onEdit: PropTypes.func,
+};
 
 export default StudentList;
