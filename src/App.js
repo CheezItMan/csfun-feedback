@@ -6,8 +6,9 @@ import firebaseWrapper from './context/auth'
 const AuthenticatedClassroomApp = React.lazy(() => import('./components/App/AuthenticatedClassroomApp'));
 const UnAuthenticatedClassroomApp = React.lazy(() => import('./components/App/UnAuthenticatedClassroomApp'));
 
-const App = ({ user, signOut, signInWithGoogle, signInWithGithub }) => {
-
+const App = (props) => {
+  console.log(props);
+  const { user, signOut, signInWithGoogle, signInWithGithub } = props;
   if (user) {
     return (
       <Suspense fallback={<div>Loading</div>} >
