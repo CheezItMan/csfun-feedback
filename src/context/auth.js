@@ -5,15 +5,15 @@ import firebaseConfig from '../firebaseConfig';
 
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-const firebaseProvider = new firebase.auth.GithubAuthProvider();
-firebaseProvider.addScope('read:user');
-firebaseProvider.addScope('repo');
+const githubProvider = new firebase.auth.GithubAuthProvider();
+githubProvider.addScope('read:user');
+githubProvider.addScope('repo');
 
 
 export const firebaseAppAuth = firebaseApp.auth();
 const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider(),
-  firebaseProvider,
+  githubProvider,
 };
 
 export default withFirebaseAuth({
