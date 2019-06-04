@@ -1,8 +1,6 @@
 import React, { Component, createContext } from 'react'
-import { firestore } from '../firebase';
+import { firestore } from '../context/auth';
 import { collectIdsAndDocs } from '../utilities';
-import { render } from 'react-testing-library';
-
 
 export const StudentsContext = createContext();
 
@@ -14,7 +12,7 @@ class StudentsProvider extends Component {
   unsubscribeFromFirestore = null;
 
   componentDidMount = () => {
-    this.unsubscribeFromFirestore = firestore.collection('students').onSnapShot(snapshot => {
+    this.unsubscribeFromFirestore = firestore.collection('students').onSnapshot(snapshot => {
       const students = snapshot.docs.map(collectIdsAndDocs);
       this.setState({ students });
     });
@@ -35,3 +33,5 @@ class StudentsProvider extends Component {
     );
   }
 }
+
+export default StudentsProvider;
