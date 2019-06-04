@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Student = ({ name, cohort, id, classroom, githubName, email, handleEdit, handleDelete }) => {
+const Student = ({ name, cohort, id, classroom, gitName, email, handleEdit, handleDelete }) => {
   return (
     <tr key={`student-${id}`}>
       <td>
@@ -14,7 +14,7 @@ const Student = ({ name, cohort, id, classroom, githubName, email, handleEdit, h
         {classroom}
       </td>
       <td>
-        {githubName}
+        {gitName}
       </td>
       <td>
         {email}
@@ -33,7 +33,7 @@ const Student = ({ name, cohort, id, classroom, githubName, email, handleEdit, h
 }
 
 Student.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   name: PropTypes.string,
   cohort: PropTypes.number,
   class: PropTypes.string,
