@@ -1,9 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, fireEvent } from 'react-testing-library'
 import App from './App';
+import { exportAllDeclaration } from '@babel/types';
 
 it('renders without crashing', () => {
+  const signInWithGithub = jest.fn();
+  const signOut = jest.fn();
+  const user = {};
+
+
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  const container = render(<App
+    signInWithGithub={signInWithGithub}
+    user={user}
+    signOut={signOut}
+  />, div);
+
+  expect(container.firstChild).toMatchSnapshot();
+
 });
