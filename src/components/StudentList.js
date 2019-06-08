@@ -23,8 +23,6 @@ const StudentList = (props) => {
   const students = useContext(StudentsContext);
   const { onEdit, onDelete } = props;
 
-  console.log(students);
-
   return (
     <table className="Student-list">
       <thead>
