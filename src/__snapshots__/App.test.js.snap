@@ -1,3 +1,100 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders without crashing 1`] = `undefined`;
+exports[`App renders without crashing 1`] = `
+<div>
+  <h2>
+    Welcome 
+     
+  </h2>
+  <table
+    class="Student-list"
+  >
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Cohort
+        </th>
+        <th>
+          Class
+        </th>
+        <th>
+          Github Name
+        </th>
+        <th>
+          Email
+        </th>
+        <th>
+           
+        </th>
+      </tr>
+    </thead>
+    <tbody />
+  </table>
+  <button
+    class="btn btn-primary"
+  >
+    Logout
+  </button>
+</div>
+`;
+
+exports[`App will redirect the user to login screen when logged out 1`] = `
+<main>
+  <h1>
+    Please Log in
+  </h1>
+  <div>
+    <h2>
+      UnAuthenticated
+    </h2>
+    <button>
+      Sign in with Github
+    </button>
+  </div>
+</main>
+`;
+
+exports[`App will redirect the user to show AuthenticatedApp when logged in 1`] = `
+<div>
+  <h2>
+    Welcome 
+    Alice Cooper
+     
+  </h2>
+  <table
+    class="Student-list"
+  >
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Cohort
+        </th>
+        <th>
+          Class
+        </th>
+        <th>
+          Github Name
+        </th>
+        <th>
+          Email
+        </th>
+        <th>
+           
+        </th>
+      </tr>
+    </thead>
+    <tbody />
+  </table>
+  <button
+    class="btn btn-primary"
+  >
+    Logout
+  </button>
+</div>
+`;
